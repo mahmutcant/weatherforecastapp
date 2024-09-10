@@ -12,35 +12,36 @@ import { dateFormatter, dayFinder } from './utils';
 
 function App() {
   const [selectedCity, setSelectedCity] = useState<WeatherDetail | null>(null);
-  const [isCityFound, setIsCityFound] = useState<boolean>(false);
   const [search, setSearch] = useState<string>("");
   const [currentWeatherData, setCurrentWeatherData] = useState<CurrentWeatherDetail>();
+  const [status, setStatus] = useState<string>("initial");
   const handleSearch = () => {
     getWeatherDetail(search).then((data) => {
       setSelectedCity(data);
-      if(typeof data === "string"){
-        setIsCityFound(false)
-      }
       getCurrentWeatherDetail(search).then((data) => {
         setCurrentWeatherData(data)
+        setStatus("found")
+      }).catch(() => {
+        setSelectedCity(null)
+        setStatus("not-found")
       })
-      setIsCityFound(true)
+    }).catch(() => {
+      setSelectedCity(null)
+      setStatus("not-found")
     })
   }
-  useEffect(() => {
-    console.log(selectedCity);
-  }, [selectedCity])
+  
   return (
     <>
       <Navbar />
       <div className='w-2/3 mt-8 flex gap-8 mx-auto'>
         <div className='w-full m-4'>
-          {(!isCityFound && selectedCity) && <img src={notFoundIcon} alt="" width={640} />}
-          {!selectedCity && <img src={mainPageIcon} alt="" width={640} />}
-          {(selectedCity && isCityFound) && (
+          {(status === "not-found") && <img src={notFoundIcon} alt="" width={640} />}
+          {(status === "initial") && <img src={mainPageIcon} alt="" width={640} />}
+          {(status === "found") && (
             <div className='border-[#DBDFE9] border rounded-xl flex flex-col'>
               <div className=''>
-                <div className='p-6'><span className='text-[16px] text-[#071437] font-semibold '>Weather Forecast for {selectedCity.city_name}</span></div>
+                <div className='p-6'><span className='text-[16px] text-[#071437] font-semibold '>Weather Forecast for {selectedCity!.city_name}</span></div>
                 <div className='grid items-center grid-cols-5'>
                   <span className='border border-[#F1F1F4] p-2 text-[#4B5675] bg-[#FCFCFC] text-[13px]'>Days</span>
                   <span className='border border-[#F1F1F4] p-2 text-[#4B5675] bg-[#FCFCFC] text-[13px] col-span-2'>Dates</span>
@@ -60,11 +61,11 @@ function App() {
           )}
         </div>
         <div className='w-2/5 relative mt-4'>
-          <input type="text" placeholder='Search a city' onChange={(e) => setSearch(e.target.value)} className='w-full placeholder-[#252F4A] p-3 rounded-lg border-[#DBDFE9] border-2' />
-          <img src={searchIcon} alt="" className='absolute right-3 top-5 cursor-pointer' onClick={handleSearch}/>
-          {(!selectedCity && !isCityFound) && <SearchResultContainer title='Select a City' description='Search and select a city to see results. Try typing the first letters of the city you want.' />}
-          {(selectedCity && !isCityFound) && <SearchResultContainer title='Does not Exist' description='Type a valid city name to get weekly forecast data.' />}
-          {(selectedCity && isCityFound) && <SearchResultContainer weatherDetail={currentWeatherData}  title='Does not Exist' description='Type a valid city name to get weekly forecast data.' />}
+          <input type="text" placeholder='Search a city' onChange={(e) => setSearch(e.target.value)} className='w-full placeholder-[#252F4A] p-3 rounded-lg font-[inter] text-[14px] border-[#DBDFE9] border-2' />
+          <img src={searchIcon} alt="" onSubmit={handleSearch} className='absolute right-3 top-5 cursor-pointer' onClick={handleSearch}/>
+          {(status === "initial") && <SearchResultContainer title='Select a City' description='Search and select a city to see results. Try typing the first letters of the city you want.' />}
+          {(status === "not-found") && <SearchResultContainer title='Does not Exist' description='Type a valid city name to get weekly forecast data.' />}
+          {(status === "found") && <SearchResultContainer weatherDetail={currentWeatherData}  title='Does not Exist' description='Type a valid city name to get weekly forecast data.' />}
         </div>
       </div>
     </>
