@@ -2,8 +2,8 @@ import { useEffect, useState } from "react";
 import CurrentWeatherDetail from "../models/WeatherDetail-model";
 import { dateFormatter } from "../utils";
 interface SearchResultContainerProps {
-  title: string;
-  description: string;
+  title?: string;
+  description?: string;
   weatherDetail?: CurrentWeatherDetail;
   
 }

@@ -17,4 +17,8 @@ function dateFormatter(dateString:string) {
     return formattedDate
 }
 
-export {dayFinder, dateFormatter};
+function normalizeCityName(city: string){
+    return city.normalize('NFD').replace(/[\u0300-\u036f]/g, "").toLowerCase();
+}
+
+export {dayFinder, dateFormatter, normalizeCityName};
