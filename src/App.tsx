@@ -20,7 +20,7 @@ function App() {
 
   const handleSearch = async () => {
     setLoading(true)
-    setSelectedCityName(search)
+    setSelectedCityName(search.toLowerCase())
     if (weeklyWeatherData[search.toLowerCase()] && currentWeatherData[search.toLowerCase()]) {
       setLoading(false)
       setStatus("found");

@@ -7,7 +7,7 @@ export const getWeatherDetail = async(city:string):Promise<WeatherDetail> => {
     try {
         const response = await axios({
             method: "GET",
-            url: `${baseURL}/forecast/daily?city=${city}&country=tr&days=7&key=${apiKey}`
+            url: `${baseURL}/forecast/daily?city=${city.toLowerCase()}&country=tr&days=7&key=${apiKey}`
         })
         return response.data
     }catch(err){
@@ -19,7 +19,7 @@ export const getCurrentWeatherDetail = async(city:string): Promise<CurrentWeathe
     try{
         const response = await axios({
             method: "GET",
-            url: `${baseURL}/current?city=${city}&country=tr&key=${apiKey}`
+            url: `${baseURL}/current?city=${city.toLowerCase()}&country=tr&key=${apiKey}`
         })
         
         return response.data.data[0]
