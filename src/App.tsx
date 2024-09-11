@@ -22,7 +22,6 @@ function App() {
     setLoading(true)
     setSelectedCityName(search)
     if (weeklyWeatherData[search.toLowerCase()] && currentWeatherData[search.toLowerCase()]) {
-      console.log("Store'dan veri kullanılıyor.");
       setLoading(false)
       setStatus("found");
     } else {
@@ -35,7 +34,6 @@ function App() {
         setLoading(false)
       } catch (error) {
         setLoading(false)
-        console.error("Veri bulunamadı:", error);
         setStatus("not-found");
       }
     }
