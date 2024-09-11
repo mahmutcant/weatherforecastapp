@@ -34,6 +34,7 @@ function App() {
         setStatus("found");
         setLoading(false)
       } catch (error) {
+        setLoading(false)
         console.error("Veri bulunamadı:", error);
         setStatus("not-found");
       }
