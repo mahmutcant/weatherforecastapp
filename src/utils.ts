@@ -6,19 +6,16 @@ function dayFinder (dateString:string) {
     return dayName
 }
 
-function dateFormatter(dateString:string) {
+function dateFormatter(dateString:string, isTable: boolean) {
     const date = new Date(dateString);
     const daysOfWeek = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
     const monthsOfYear = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
     const dayName = daysOfWeek[date.getDay()];
     const monthName = monthsOfYear[date.getMonth()];
     const dayNumber = date.getDate();
-    const formattedDate = `${monthName} ${dayNumber}, ${dayName}`;
+    const formattedDate = isTable ? `${monthName} ${dayNumber}, ${date.getFullYear()}` : `${monthName} ${dayNumber}, ${dayName}`;
     return formattedDate
 }
 
-function normalizeCityName(city: string){
-    return city.normalize('NFD').replace(/[\u0300-\u036f]/g, "").toLowerCase();
-}
 
-export {dayFinder, dateFormatter, normalizeCityName};
+export {dayFinder, dateFormatter};

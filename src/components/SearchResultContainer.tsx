@@ -37,7 +37,7 @@ const SearchResultContainer = ({ title, description, weatherDetail }: SearchResu
           <h1 className="text-[#296573] text-[56px] font-bold font-[inter]">{Math.floor(weatherDetail.app_temp)} °C</h1>
           <h1 className="text-[32px] font-bold font-[inter] mt-5">{weatherDetail.city_name}</h1>
           <div className="text-lg mt-2 font-[inter]">
-            {dateFormatter(weatherDetail.datetime.split(":")[0])}
+            {dateFormatter(weatherDetail.datetime.split(":")[0],false)}
           </div>
           <div className="mt-9">
             <div className="text-[#296573] text-[14px] flex items-center justify-center">

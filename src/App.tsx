@@ -105,7 +105,7 @@ function App() {
                         {dayFinder(item.datetime)}
                       </span>
                       <span className="border-r border-[#F1F1F4] p-5 md:col-span-2 max-sm:text-[12px] max-sm:flex max-sm:justify-center">
-                        {dateFormatter(item.datetime)}
+                        {dateFormatter(item.datetime,true)}
                       </span>
                       <span className="border-r border-[#F1F1F4] p-5">
                         {Math.floor(item.app_min_temp)}
