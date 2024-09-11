@@ -15,8 +15,8 @@ This project is a simple weather forecasting page where users can retrieve weath
 #### Clone The Repository:
 
 ``` 
-  git clone https://github.com/username/weather-forecast-app.git
-  cd weather-forecast-app
+  git clone https://github.com/mahmutcant/weatherforecastapp
+  cd weatherforecastapp
 ```
 
 #### Install Dependencies:
