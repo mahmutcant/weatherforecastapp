@@ -1,50 +1,54 @@
-# React + TypeScript + Vite
+# Weather Forecast Application
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+This project is a simple weather forecasting page where users can retrieve weather data by searching for a city name. It was developed using React and TypeScript, and it fetches weather forecast data using the Weatherbit API.
 
-Currently, two official plugins are available:
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## Features
 
-## Expanding the ESLint configuration
+- Search for weather forecasts by city name.
+- Display forecast data in a table fetched from the API.
+- Show detailed information for the selected day in a display card.
+- By default, the first day of the week is shown on the card.
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+## Setup
 
-- Configure the top-level `parserOptions` property like this:
+#### Clone The Repository:
 
-```js
-export default tseslint.config({
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-})
+``` 
+  git clone https://github.com/username/weather-forecast-app.git
+  cd weather-forecast-app
 ```
 
-- Replace `tseslint.configs.recommended` to `tseslint.configs.recommendedTypeChecked` or `tseslint.configs.strictTypeChecked`
-- Optionally add `...tseslint.configs.stylisticTypeChecked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and update the config:
+#### Install Dependencies:
 
-```js
-// eslint.config.js
-import react from 'eslint-plugin-react'
+``` npm install ```
 
-export default tseslint.config({
-  // Set the react version
-  settings: { react: { version: '18.3' } },
-  plugins: {
-    // Add the react plugin
-    react,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended rules
-    ...react.configs.recommended.rules,
-    ...react.configs['jsx-runtime'].rules,
-  },
-})
-```
+#### Set up environment variables:
+  
+  The project requires a .env file to API key and API base URL. This file has been ignored by Git for security reasons.
+
+  ```
+    VITE_API_BASE_URL=https://api.weatherbit.io/v2.0
+    VITE_WEATHER_API_KEY=apikey
+  ```
+
+#### Run the project:
+
+- NPM
+
+  ```npm run dev```
+
+- yarn
+
+  ```yarn run dev```
+
+#### Bonus Features
+- Caching
+- Responsive Design
+- Loading Animation
+
+## Live Demo
+
+The project is deployed and can be viewed at the following link:
+
+[Weather Forecast App](https://weatherforecastapp-dusky.vercel.app/)
